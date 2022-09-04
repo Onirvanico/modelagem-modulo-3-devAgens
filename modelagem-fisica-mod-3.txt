@@ -1,0 +1,27 @@
+create table pacote(
+    id_pacote int primary key auto_increment,
+    num_viajantes int not null,
+    destino varchar(100) not null,
+    data_inicio datetime not null,
+    data_fim datetime not null,
+    titulo varchar(100) not null,
+    descricao varchar(255) not null,
+    preco decimal(10,2) not null
+)
+
+create table cliente(
+    id_cliente int primary key auto_increment,
+    nome varchar(40) not null,
+    email varchar(255) not null
+)
+
+create table pagamento(
+    id_pagamento int primary key auto_increment,
+    valor_total decimal(10,2) not null,
+    data_pagamento timestamp not null,
+    id_cliente int,
+    id_pacote int,
+    
+	constraint fk_cliente_id_cliente foreign key(id_cliente) references cliente(id_cliente),
+    constraint fk_pacote_id_pacote foreign key(id_pacote) references pacote(id_pacote)
+)
